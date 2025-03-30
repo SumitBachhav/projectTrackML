@@ -6,6 +6,8 @@ from models import DataModel, DataModel2, AbstractModel
 from ml_utils import getEmbedding, string_to_list
 from sklearn.metrics.pairwise import cosine_similarity
 from config import CORS_ORIGIN
+import os
+import uvicorn
 
 app = FastAPI()
 
@@ -75,3 +77,7 @@ async def insert2(request: Request, abstracts: list[AbstractModel]):
     return {"message": "Abstracts submitted successfully"}
 
 handler = Mangum(app)
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Default to 8000 if PORT is not set
+    uvicorn.run(app, host="0.0.0.0", port=port)
