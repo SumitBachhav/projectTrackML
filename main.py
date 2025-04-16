@@ -61,7 +61,7 @@ async def insert2(request: Request, abstracts: list[AbstractModel]):
         raise HTTPException(status_code=400, detail="No abstracts submitted to insert")
 
     abstracts_to_insert = [{
-        "ownerId": str(request.state.user._id) if hasattr(request.state, 'user') else "anonymous",
+        "ownerId": str(request.state.user._id) if hasattr(request.state, 'user') else "coordinator",
         "title": abstract.title,
         "abstract": abstract.abstract,
         "abstract_e": str(getEmbedding(abstract.abstract)),

@@ -13,5 +13,5 @@ class DataModel2(BaseModel):
 class AbstractModel(BaseModel):
     abstract: str
     title: str
-    domain: str
-    keywords: str
+    domain: list
+    keywords: list
